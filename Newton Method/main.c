@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <math.h>
 
-#define VERSION_WITHOUT_INPUT_D_FUNC //Компиляция с заданной функцией производной. Компиляция с численным вычислением производной - VERSION_WITHOUT_INPUT_D_FUNC
-#define D_INCREMENT 0.0000000001
+#define VERSION_WITH_INPUT_D_FUNC //Компиляция с заданной функцией производной. Компиляция с численным вычислением производной - VERSION_WITHOUT_INPUT_D_FUNC
+#define D_INCREMENT 0.00000001
 
 long double func(long double x) {
 	return x - sin (x) - 0.25;
@@ -20,7 +20,7 @@ long double d_func(long double x) {
 #ifdef VERSION_WITHOUT_INPUT_D_FUNC
 
 long double d_func(long double x) {
-	return func(x + D_INCREMENT) - func(x) / D_INCREMENT;
+	return (func(x + D_INCREMENT) - func(x)) / D_INCREMENT;
 }
 
 #endif // VERSION_WITHOUT_INPUT_D_FUNC
