@@ -20,7 +20,7 @@ long double d_func(long double x) {
 #ifdef VERSION_WITHOUT_INPUT_D_FUNC
 
 long double d_func(long double x) {
-	return (func(x + D_INCREMENT) - func(x)) / D_INCREMENT;
+	return (func(x + D_INCREMENT) - func(x - D_INCREMENT)) / (2 * D_INCREMENT);
 }
 
 #endif // VERSION_WITHOUT_INPUT_D_FUNC
@@ -39,7 +39,7 @@ long double solve(long double accu, long double inValue) {
 int main() {
 	printf("This programm solves equation through Newton method.\n");
 	for (int cont = 1; cont;) {
-		printf("Input accuracy and initial value in the following format \"initial_value accuracy\".\n");
+		printf("Input the accuracy and the initial value in the following format \"initial_value accuracy\".\n");
 		long double accu = 0;
 		long double inValue = 0;
 		scanf_s("%Lf %Lf", &inValue, &accu);
