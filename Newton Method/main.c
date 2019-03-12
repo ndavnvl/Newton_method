@@ -5,7 +5,7 @@
 
 #define VERSION_WITH_INPUT_D_FUNC //Компиляция с заданной функцией производной. Компиляция с численным вычислением производной - VERSION_WITHOUT_INPUT_D_FUNC
 #define D_INCREMENT 0.00000001
-
+#define MAX_ITERATION 1000
 
 
 long double func(long double x) {
@@ -41,10 +41,10 @@ long double solve(long double accu, long double inValue) {
 	long double value = inValue;
 	long double nextValue = inValue - func(inValue) / d_func(inValue);
 
-	while (fabs(value - nextValue) > accu) {
+	for (int i = 0; fabs(value - nextValue) > accu && i < MAX_ITERATION && nextValue == nextValue; i++) {
 		value = nextValue;
 		nextValue -= func(nextValue) / d_func(nextValue);
-	}
+			}
 
 	return nextValue;
 
@@ -61,7 +61,7 @@ int main() {
 		long double inValue = 0;
 
 		scanf_s("%Lf %Lf", &inValue, &accu);
-		printf("The approximate solution is %.20Lf\n", solve(accu, inValue));
+		printf("The approximate solution is %.20Lf\nIf it is not a numbe (NaN) choose another initial value.\n", solve(accu, inValue));
 
 		printf("If you want to solve another equation input 1, else input 0\n");
 		scanf_s("%d", &cont);
